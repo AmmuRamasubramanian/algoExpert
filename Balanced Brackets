@@ -1,0 +1,20 @@
+string= "([])(){}(())()()"
+def BalancedString(string):
+  openings="([{"
+  closing=')]}'
+  matching={']':'[','}':'{',')':'('}
+  stack=[]
+  for i in string:
+    if i in openings:
+      stack.append(i)
+    elif i in closing:
+      if len(stack)==0:
+        return False
+      if stack[-1]==matching[i]:
+        stack.pop()
+      else:
+        return False
+
+  return len(stack)==0
+print(BalancedString(string))
+
