@@ -1,0 +1,23 @@
+stack=stack = [-5, 2, -2, 4, 3, 1]
+def stacksort(stack):
+    if len(stack)==0:
+        return stack
+    top=stack.pop()
+    stacksort(stack)
+    insertVal(stack,top)
+    return stack
+
+def insertVal(stack,value):
+    if len(stack)!=0:
+        lastval=stack.pop()
+        stack.append(lastval)
+    else:
+        lastval=None
+    if len(stack)==0 or lastval<= value:
+        stack.append(value)
+        return
+    top=stack.pop()
+    insertVal(stack,value)
+    stack.append(top)
+
+print(stacksort(stack))
