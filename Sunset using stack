@@ -1,0 +1,19 @@
+buildings = [3, 5, 4, 4, 3, 1, 3, 2]
+direction='east'
+def SunsetView(buildings,direction):
+  stack=[]
+  startIdx=0 if direction=='west' else len(buildings)-1
+  step=1 if direction=='west' else -1
+  idx=startIdx
+  while idx>=0 and idx<len(buildings):
+    buildingheight=buildings[idx]
+    while len(stack)>0 and buildingheight>=buildings[stack[-1]]:
+      stack.pop()
+    stack.append(idx)
+    idx+=step
+  if direction=='east':
+    return stack[::-1]
+  return stack
+
+
+print(SunsetView(buildings,direction))
