@@ -1,0 +1,25 @@
+array = [141, 1, 17, -7, -17, -27, 18, 541, 8, 7, 7]
+def ThreeLargestIntegers(array):
+    arr=[None,None,None]
+    for num in array:
+        findLargest(num,arr)
+    return arr
+
+def findLargest(num,arr):
+    if arr[2]==None or num>arr[2]:
+        updateAndShift(arr,num,2)
+    elif arr[1]==None or num>arr[1]:
+        updateAndShift(arr, num, 1)
+    elif arr[0]==None or num>arr[0]:
+        updateAndShift(arr, num, 0)
+
+def updateAndShift(array,num,idx):
+    for i in range(idx+1):
+        if i==idx:
+            array[i]=num
+        else:
+            array[i]=array[i+1]
+
+print(ThreeLargestIntegers(array))
+
+
