@@ -1,0 +1,27 @@
+#Normal method
+array = [-5, -3, 0, 3, 4, 5, 9]
+def IndexEqualsValue(array):
+    for i in range(len(array)):
+        if i==array[i]:
+            return i
+    return -1
+print(IndexEqualsValue(array))
+
+#using iteration
+array = [-5, -3, 2, 3, 4, 5, 9]
+def IndexEqualsValue(array):
+    l=0
+    r=len(array)-1
+    while r>=l:
+        m=(l+r)//2
+        if array[m]<m:
+            l=m+1
+        elif m==array[m] and m==0:
+            return m
+        elif m==array[m] and array[m-1]<m-1:
+            return m
+        else:
+            r=m-1
+    return -1
+print(IndexEqualsValue(array))
+
