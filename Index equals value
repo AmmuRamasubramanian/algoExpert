@@ -25,3 +25,26 @@ def IndexEqualsValue(array):
     return -1
 print(IndexEqualsValue(array))
 
+#using recursion
+array = [-5, -3, 2, 3, 4, 5, 9]
+def IndexEqualsValue(array):
+    return IndexEqualsValuehelper(array,0,len(array)-1)
+
+def IndexEqualsValuehelper(array,leftIdx,rightIdx):
+
+    if leftIdx>rightIdx:
+        return -1
+    middle = (leftIdx + rightIdx) // 2
+    middleval=array[middle]
+
+    if middleval<middle:
+        return IndexEqualsValuehelper(array,middle+1,rightIdx)
+    elif middle==middleval and middle==0:
+        return middle
+    elif middle==middleval and array[middle-1]<middle-1:
+        return middle
+    else:
+        return IndexEqualsValuehelper(array,leftIdx,middle+1)
+
+
+print(IndexEqualsValue(array))
