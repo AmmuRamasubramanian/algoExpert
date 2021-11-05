@@ -1,0 +1,32 @@
+array = [8, 5, 2, 9, 7, 6, 3]
+k = 3
+def quickselect(array,k):
+    position=k-1
+    return quickselectHelper(array,0,len(array)-1,position)
+
+def quickselectHelper(array,startIdx,endIdx,position):
+    while True:
+        if startIdx>endIdx:
+            raise Exception("error!")
+        pivot=startIdx
+        leftIdx=startIdx+1
+        rightIdx=endIdx
+        while leftIdx<=rightIdx:
+            if array[pivot]<array[leftIdx] and array[pivot]>array[rightIdx]:
+                swap(leftIdx,rightIdx,array)
+            if array[pivot]>=array[leftIdx]:
+                leftIdx+=1
+            if array[pivot]<=array[rightIdx]:
+                rightIdx-=1
+        swap(pivot,rightIdx,array)
+        if rightIdx==position:
+            return array[rightIdx]
+        elif rightIdx<position:
+            startIdx=rightIdx+1
+        else:
+            endIdx=rightIdx-1
+
+def swap(i,j,array):
+    array[i],array[j]=array[j],array[i]
+
+print(quickselect(array,k))
