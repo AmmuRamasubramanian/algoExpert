@@ -1,3 +1,5 @@
+#using recursion
+
 array = [45, 61, 71, 72, 73, 0, 1, 21, 33, 37]
 target = 33
 def ShiftedBinarySearch(array,target):
@@ -22,3 +24,29 @@ def ShiftedBinarySearchHelper(array,target,left,right):
         else:
             return ShiftedBinarySearchHelper(array,target,left,middle-1)
 print(ShiftedBinarySearch(array,target))
+
+#using iteration
+array = [45, 61, 71, 72, 73, 0, 1, 21, 33, 37]
+target = 33
+def ShiftedBinarySearch(array,target):
+    return ShiftedBinarySearchHelper(array,target,0,len(array)-1)
+def ShiftedBinarySearchHelper(array,target,left,right):
+    while left<=right:
+        middle=(left+right) //2
+        matchEle=array[middle]
+        leftNum=array[left]
+        rightNum=array[right]
+        if matchEle==target:
+            return middle
+        elif leftNum<=matchEle:
+            if target>=leftNum and target<matchEle:
+               right=middle-1
+            else:
+                left=middle+1
+        else:
+            if target<=rightNum and target>matchEle:
+                left=middle+1
+            else:
+                right=middle-1
+print(ShiftedBinarySearch(array,target))
+
