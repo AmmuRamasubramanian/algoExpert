@@ -1,0 +1,24 @@
+array = [45, 61, 71, 72, 73, 0, 1, 21, 33, 37]
+target = 33
+def ShiftedBinarySearch(array,target):
+    return ShiftedBinarySearchHelper(array,target,0,len(array)-1)
+def ShiftedBinarySearchHelper(array,target,left,right):
+    if left>right:
+        return -1
+    middle=(left+right) //2
+    matchEle=array[middle]
+    leftNum=array[left]
+    rightNum=array[right]
+    if matchEle==target:
+        return middle
+    elif leftNum<=matchEle:
+        if target>=leftNum and target<matchEle:
+            return ShiftedBinarySearchHelper(array,target,left,middle-1)
+        else:
+            return ShiftedBinarySearchHelper(array,target,middle+1,right)
+    else:
+        if target<=rightNum and target>matchEle:
+            return ShiftedBinarySearchHelper(array,target,middle+1,right)
+        else:
+            return ShiftedBinarySearchHelper(array,target,left,middle-1)
+print(ShiftedBinarySearch(array,target))
