@@ -1,0 +1,28 @@
+array = [0, 1, 21, 33, 45, 45, 45, 45, 45, 45, 61, 71, 73]
+target = 45
+def SearchForRange(array,target):
+    final=[-1,-1]
+    AlteredBinarySearch(array,target,0,len(array)-1,final,True)
+    AlteredBinarySearch(array,target,0,len(array)-1,final,False)
+    return final
+def AlteredBinarySearch(array,target,left,right,final,goLeft):
+    if left>right:
+        return
+    mid=(left+right)//2
+    if array[mid]<target:
+        AlteredBinarySearch(array,target,mid+1,right,final,goLeft)
+    elif array[mid]>target:
+        AlteredBinarySearch(array,target,left,mid-1,final,goLeft)
+    else:
+        if goLeft:
+            if mid==0 or array[mid-1]!=target:
+                final[0]=mid
+            else:
+                AlteredBinarySearch(array,target,left,mid-1,final,goLeft)
+        else:
+            if mid==len(array)-1 or array[mid+1]!=target:
+                final[1]=mid
+            else:
+                AlteredBinarySearch(array,target,mid+1,right,final,goLeft)
+print(SearchForRange(array,target))
+
