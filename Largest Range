@@ -1,0 +1,31 @@
+array = [1, 11, 3, 0, 15, 5, 2, 4, 10, 7, 12, 6]
+def LargestRange(array):
+    bestRange=[]
+    LongestLength=0
+
+    numsDict={}
+    for i in array:
+        numsDict[i]=True
+    for i in array:
+        if not numsDict[i]:
+            continue
+        numsDict[i]=False
+        currentLength=1
+        left=i-1
+        right=i+1
+        while left in numsDict:
+            numsDict[left]=False
+            currentLength+=1
+            left-=1
+        while right in numsDict:
+            numsDict[right]=False
+            currentLength+=1
+            right+=1
+        if currentLength>LongestLength:
+            LongestLength=currentLength
+            bestRange=[left+1,right-1]
+    return bestRange
+
+
+
+print(LargestRange(array))
