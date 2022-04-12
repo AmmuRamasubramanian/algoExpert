@@ -1,0 +1,42 @@
+#method 1 consumes time and space
+String="malayalam"
+new=""
+for i in String:
+    new+=i
+print(new==String)
+
+#method 2
+String1="abcdcba"
+new1=[]
+for i in String1:
+    new1.append(i)
+s=""
+s=s.join(new1)
+print(s==String1)
+
+#method 3--efficient method
+input="abcdedcba"
+def isPalindrome(input,i=0):
+    j=len(input)-1-i
+    if i>=j:
+        return True
+    if input[i]!=input[j]:
+        return False
+    return isPalindrome(input,i+1)
+
+s=isPalindrome(input,0)
+print(s)
+
+#method 4
+inpu1="amma"
+def PalindromeCheck(input1):
+    leftIdx=0
+    rightIdx=len(input1)-1
+    while leftIdx<rightIdx:
+        if input1[leftIdx]!=input1[rightIdx]:
+            return False
+        leftIdx+=1
+        rightIdx-=1
+    return True
+ss=PalindromeCheck(inpu1)
+print(ss)
